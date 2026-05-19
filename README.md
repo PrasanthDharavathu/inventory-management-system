@@ -70,4 +70,3 @@ GET /products/page?page=0&size=5&sortBy=price&direction=asc
 ```http
 http://localhost:8080/swagger-ui/index.html
 
-hi
