@@ -57,7 +57,7 @@ This is a Spring Boot backend application developed for managing inventory produ
 ## Pagination Example
 
 ```http
-GET /products?page?page=0&size=5
+GET /products/page?page=0&size=5
 ```
 
 ## Sorting Example
