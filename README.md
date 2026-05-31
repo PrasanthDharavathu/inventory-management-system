@@ -40,6 +40,12 @@ Inventory Management System is a full-stack web application developed to manage 
 * Pagination Controls
 * Client-Side Validation Messages
 * Responsive UI using Bootstrap
+* No Products Found message
+* Combined Search and Category Filtering
+* Dynamic Category Dropdown
+* Pagination Controls
+* Product Sorting
+* Form Validation
 
 ---
 

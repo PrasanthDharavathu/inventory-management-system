@@ -429,30 +429,39 @@ function App() {
                         <th>Actions</th>
                     </tr>
                     </thead>
-
                     <tbody>
-                    {products.map((product) => (<tr key={product.id}>
-                            <td>{product.id}</td>
-                            <td>{product.name}</td>
-                            <td>{product.category}</td>
-                            <td>{product.price}</td>
-                            <td>{product.quantity}</td>
-                            <td>
-                                <button
-                                    className="btn btn-warning btn-sm me-2"
-                                    onClick={() => editProduct(product)}
-                                >
-                                    Edit
-                                </button>
-
-                                <button
-                                    className="btn btn-danger btn-sm"
-                                    onClick={() => deleteProduct(product.id)}
-                                >
-                                    Delete
-                                </button>
+                    {products.length === 0 ? (
+                        <tr>
+                            <td colSpan="6" className="text-center text-muted">
+                                No products found
                             </td>
-                        </tr>))}
+                        </tr>
+                    ) : (
+                        products.map((product) => (
+                            <tr key={product.id}>
+                                <td>{product.id}</td>
+                                <td>{product.name}</td>
+                                <td>{product.category}</td>
+                                <td>{product.price}</td>
+                                <td>{product.quantity}</td>
+                                <td>
+                                    <button
+                                        className="btn btn-warning btn-sm me-2"
+                                        onClick={() => editProduct(product)}
+                                    >
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        className="btn btn-danger btn-sm"
+                                        onClick={() => deleteProduct(product.id)}
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    )}
                     </tbody>
 
                 </table>
@@ -466,7 +475,7 @@ function App() {
                     </button>
 
                     <span>
-        Page {currentPage + 1} of {totalPages}
+        Page {totalPages === 0 ? 0 : currentPage + 1} of {totalPages}
     </span>
 
                     <button
