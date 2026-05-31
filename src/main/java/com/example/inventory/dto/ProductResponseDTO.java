@@ -6,12 +6,14 @@ public class ProductResponseDTO {
     private String name;
     private String category;
     private double price;
+    private int quantity;
 
-    public ProductResponseDTO(Long id, String name, String category, double price){
+    public ProductResponseDTO(Long id, String name, String category, double price, int quantity){
         this.id = id;
         this.name = name;
         this.category = category;
         this.price = price;
+        this.quantity = quantity;
     }
     public Long getId(){
         return id;
@@ -24,5 +26,8 @@ public class ProductResponseDTO {
     }
     public double getPrice(){
         return price;
+    }
+    public int getQuantity(){
+        return quantity;
     }
 }

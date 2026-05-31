@@ -16,7 +16,7 @@ import org.springframework.data.domain.Sort;
 import java.net.URI;
 import java.util.List;
 
-
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -95,6 +95,54 @@ public ResponseEntity<Void> deleteProduct(@PathVariable Long id){
 @GetMapping("/search")
     public List<ProductResponseDTO> searchProducts(@RequestParam String keyword){
     return productService.searchProducts(keyword);
+}
+@GetMapping("/category/{category}/page")
+    public Page<ProductResponseDTO> getProductsByCategoryPage(
+            @PathVariable String category,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String direction) {
+
+    Sort sort = direction.equalsIgnoreCase("asc")
+            ? Sort.by(sortBy).ascending()
+            : Sort.by(sortBy).descending();
+
+    Pageable pageable = PageRequest.of(page, size, sort);
+
+    return productService.getProductsByCategoryPage(category, pageable);
+}
+
+@GetMapping("/search/page")
+    public Page<ProductResponseDTO> searchProductsPage(
+            @RequestParam String keyword,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String direction) {
+    Sort sort = direction.equalsIgnoreCase("asc")
+            ? Sort.by(sortBy).ascending()
+            : Sort.by(sortBy).descending();
+
+    Pageable pageable = PageRequest.of(page, size, sort);
+
+    return productService.searchProductsPage(keyword, pageable);
+}
+
+@GetMapping("/filter")
+    public Page<ProductResponseDTO> filterProducts(
+            @RequestParam String keyword,
+            @RequestParam String category,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String direction) {
+    Sort sort = direction.equalsIgnoreCase("asc")
+            ? Sort.by(sortBy).ascending()
+            : Sort.by(sortBy).descending();
+
+    Pageable pageable = PageRequest.of(page, size, sort);
+    return productService.filterProducts(keyword, category, pageable);
 }
 }
 

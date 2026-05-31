@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;         //for pagination
 import org.springframework.data.domain.Pageable;
 import org.slf4j.Logger;  //Logger
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -62,7 +64,8 @@ private ProductResponseDTO mapToDTO(Product product){
                 product.getId(),
                 product.getName(),
                 product.getCategory(),
-                product.getPrice()
+                product.getPrice(),
+                product.getQuantity()
         );
 }
 public ProductResponseDTO getProductDTOById(Long id){
@@ -109,6 +112,32 @@ public List<ProductResponseDTO> searchProducts(String keyword){
                 .toList();
 }
 
+public Page<ProductResponseDTO> getProductsByCategoryPage(String category, Pageable pageable ){
+        Page<Product> productsPage = productRepository.findByCategoryIgnoreCase(category, pageable);
+
+        if(productsPage.isEmpty()){
+            throw new ProductNotFoundException("Product not found with category: " + category);
+        }
+        return productsPage.map(this::mapToDTO);
+}
+
+public Page<ProductResponseDTO> searchProductsPage(String keyword, Pageable pageable){
+        Page<Product> productsPage = productRepository.findByNameContainingIgnoreCase(keyword, pageable);
+
+        if(productsPage.isEmpty()){
+            throw new ProductNotFoundException("Product not found with keyword: " + keyword);
+        }
+        return productsPage.map(this::mapToDTO);
+}
+
+public Page<ProductResponseDTO> filterProducts(String keyword, String category, Pageable pageable) {
+        Page<Product> productsPage = productRepository.findByNameContainingIgnoreCaseAndCategoryIgnoreCase(keyword, category, pageable);
+
+        if(productsPage.isEmpty()){
+            throw new ProductNotFoundException("No products found for keyword: " + keyword + " and category: " + category);
+        }
+        return productsPage.map(this::mapToDTO);
+}
 
 }
 
