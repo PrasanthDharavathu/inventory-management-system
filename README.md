@@ -184,9 +184,6 @@ http://localhost:8080/swagger-ui/index.html
 
 ### Product Dashboard
 
-## Application Screenshots
-
-### Product Dashboard
 
 ![Frontend Dashboard](docs/screenshots/frontend-dashboard.png)
 
