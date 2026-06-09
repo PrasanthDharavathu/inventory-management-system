@@ -6,6 +6,14 @@ Inventory Management System is a full-stack web application developed to manage 
 
 ---
 
+## Live Demo
+
+Frontend:
+https://inventory-management-system-two-azure.vercel.app
+
+Backend Swagger:
+https://inventory-management-system-gyln.onrender.com/swagger-ui/index.html
+
 ## Features
 
 ### Backend Features
@@ -56,7 +64,8 @@ Inventory Management System is a full-stack web application developed to manage 
 * Java 17
 * Spring Boot 3
 * Spring Data JPA
-* MySQL
+* MySQL (Local Development)
+* PostgreSQL (Production Database)
 * Maven
 * Swagger/OpenAPI
 * JUnit 5
@@ -77,6 +86,10 @@ Inventory Management System is a full-stack web application developed to manage 
 * Git
 * GitHub
 * Postman
+* Docker
+* Docker compose
+* Render
+* Vercel
 
 ---
 
@@ -147,10 +160,28 @@ http://localhost:8080/swagger-ui/index.html
 
 ---
 
+## Deployment
+
+### Frontend Deployment
+- Vercel
+
+### Backend Deployment
+- Render
+
+### Database
+- PostgreSQL (Render Managed Database)
+
+### Containerization
+- Docker & Docker Compose
+
 ## Future Enhancements
 
-* GitHub Actions CI/CD
-* Docker Containerization
 * Authentication & Authorization
 * Dashboard Analytics
 * Inventory Reports
+
+## Application Screenshots
+
+### Product Dashboard
+
+(Add screenshots here)
