@@ -30,13 +30,13 @@ function App() {
         let url = "";
 
         if (searchKeyword.trim() !== "" && selectedCategory !== "") {
-            url = `http://localhost:8080/products/filter?keyword=${searchKeyword}&category=${selectedCategory}&page=${currentPage}&size=5&sortBy=${sortBy}&direction=${direction}`;
+            url = `https://inventory-management-system-gyln.onrender.com/products/filter?keyword=${searchKeyword}&category=${selectedCategory}&page=${currentPage}&size=5&sortBy=${sortBy}&direction=${direction}`;
         } else if (searchKeyword.trim() !== "") {
-            url = `http://localhost:8080/products/search/page?keyword=${searchKeyword}&page=${currentPage}&size=5&sortBy=${sortBy}&direction=${direction}`;
+            url = `https://inventory-management-system-gyln.onrender.com/products/search/page?keyword=${searchKeyword}&page=${currentPage}&size=5&sortBy=${sortBy}&direction=${direction}`;
         } else if (selectedCategory !== "") {
-            url = `http://localhost:8080/products/category/${selectedCategory}/page?page=${currentPage}&size=5&sortBy=${sortBy}&direction=${direction}`;
+            url = `https://inventory-management-system-gyln.onrender.com/products/category/${selectedCategory}/page?page=${currentPage}&size=5&sortBy=${sortBy}&direction=${direction}`;
         } else {
-            url = `http://localhost:8080/products/page?page=${currentPage}&size=5&sortBy=${sortBy}&direction=${direction}`;
+            url = `https://inventory-management-system-gyln.onrender.com/products/page?page=${currentPage}&size=5&sortBy=${sortBy}&direction=${direction}`;
         }
 
         axios
@@ -53,7 +53,7 @@ function App() {
     };
     const fetchCategories = () => {
         axios
-            .get("http://localhost:8080/products")
+            .get("https://inventory-management-system-gyln.onrender.com/products")
             .then((response) => {
                 const uniqueCategories = [
                     ...new Set(response.data.map((product) => product.category))
@@ -106,7 +106,7 @@ function App() {
         }
 
         axios
-            .post("http://localhost:8080/products", newProduct)
+            .post("https://inventory-management-system-gyln.onrender.com/products", newProduct)
             .then(() => {
                 fetchProducts();
                 fetchCategories();
@@ -125,7 +125,7 @@ function App() {
     };
     const deleteProduct = (id) => {
         axios
-            .delete(`http://localhost:8080/products/${id}`)
+            .delete(`https://inventory-management-system-gyln.onrender.com/products/${id}`)
             .then(() => {
                 fetchProducts();
                 fetchCategories();
@@ -148,7 +148,7 @@ function App() {
     };
     const updateProduct = () => {
         axios
-            .put(`http://localhost:8080/products/${editingProductId}`, newProduct)
+            .put(`https://inventory-management-system-gyln.onrender.com/products/${editingProductId}`, newProduct)
             .then(() => {
 
                 fetchProducts();
